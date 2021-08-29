@@ -1,0 +1,17 @@
+.search-column {
+    color: aquamarine;
+}
+
+#city-search-form {
+    background-color: blueviolet;
+}
+
+
+
+#current-forecast {
+    background-color: darkgrey;
+}
+
+#five-day-container {
+    background-color: darkseagreen;
+}

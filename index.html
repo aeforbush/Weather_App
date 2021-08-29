@@ -18,26 +18,23 @@
     <!-- search bar container-->
     <main class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="card">
+        <!-- search column -->
+            <div class="col-12 col-md-3 p-2 search-column">
+                <div class="card" id="city-search-form">
                 <h2>Find Location</h2>
                 <form class="card-body" id="city-search-form">
                     <input id=city type="text" class="form-input"/>
-                    <button id="btn btn-primary" type="button" disabled> 
-                        <span class="spinner-gorw spinner-grow-sm" role="status" aria-hidden="true"></span>
-                        <span class="sr-only">Searching...</span>
+                    <button id="btn btn-primary" type="submit">Search</span>
                     </button>
                 </form>
-                </div>
-                <div class="card">
+                <div id="past-search border" id="past-history-buttons"></div>
                     <h3 class="card-header">Location History</h3>
-                    <div id="location-history-buttons" class="card-body"></div>
-                </div>
-            </div>
-        <div class="row">
-        <div class="col-12 col-md-8">
-            <div id="current-forecast">
-                <div class="col-12">
+                </div>  
+            </div>            
+        <!-- current forecast container -->
+            <div class="col-12 col-md-9 p-2">
+                <div class="row border selected-city" id="current-forecast">
+                    <div class="col-12">
                     <h2 id="searched-city"></h2>
                     <h3>Current Forecast</h3>
                     <div id="current-weather-container" class="list-group"></div>
