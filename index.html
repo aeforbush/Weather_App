@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forcaster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Weather Forecast</title>
+
 </head>
 <body>
-    <main>
-        <div id="container" class="weather-container">
-
+    <!-- header is full width -->
+    <header class="bg-dark text-white text-center p-2">
+        <h1>Weather Forecast</h1>
+    </header>
+    <!-- search bar container-->
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="card">
+                <h2>Find Location</h2>
+                <form class="card-body" id="city-search-form">
+                    <input id=city type="text" class="form-input"/>
+                    <button id="btn btn-primary" type="button" disabled> 
+                        <span class="spinner-gorw spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Searching...</span>
+                    </button>
+                </form>
+                </div>
+                <div class="card">
+                    <h3 class="card-header">Location History</h3>
+                    <div id="location-history-buttons" class="card-body"></div>
+                </div>
+            </div>
+        <div class="row">
+        <div class="col-12 col-md-8">
+            <div id="current-forecast">
+                <div class="col-12">
+                    <h2 id="searched-city"></h2>
+                    <h3>Current Forecast</h3>
+                    <div id="current-weather-container" class="list-group"></div>
+                </div>
+            </div>
+            <div class="row border" id="five-day-forecast">
+                <h2 class="col-12" id="future-forecast"></h2>
+                <h3>Five Day</h3>
+                <div class="d-flex" id="fiveday-container"></div>
+            </div>
         </div>
     </main>
-    <script src="./assets/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    
+   
 </body>
 </html>
