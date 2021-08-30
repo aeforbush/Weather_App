@@ -25,7 +25,7 @@ var formSubmitHandler = function(event) {
     }
     saveSearch();
     pastSearch(city);
-    // console.log(city);
+    console.log(city);
 };
 
 // saveSearch function
@@ -48,6 +48,18 @@ var getWeather = function () {
     });
 };
 // displayWeather function
+var displayWeather = function(weather, searchCity) {
+    // clear old content
+    weatherContainerEl.textContent= "";
+    citySearchInputEl.textContent=searchCity;
+
+    console.log(weather);
+
+    // create date element
+    var currentDate = document.createElement("span")
+    currentDate.textContent=" (' + moment(weather.dt.value).format('MMMM Do YYYY, h:mm:ss a') + ') ";
+    citySearchInputEl.appendChild(currentDate);
+};
 // getUvIndex function
 // displayUvIndex function
 // getFiveDay function
