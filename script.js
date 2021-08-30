@@ -26,33 +26,32 @@ var formSubmitHandler = function(event) {
     saveSearch();
     pastSearch(city);
     console.log(city);
-};
+}
 
 // saveSearch function
 var saveSearch = function() {
     localStorage.setItem("cities", JSON.stringify(cities));
-};
+}
 
 // getCityWeather function
 var getWeather = function () {
-    var apiKey =  'f3c6f7687f7f43a162f3912305630533';
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={"apiKey"}';
+    // var apiKey =  'f3c6f7687f7f43a162f3912305630533';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=f3c6f7687f7f43a162f3912305630533';
 
     // make a request to the url for call back
     fetch(apiUrl)
     .then(function(response) {
         response.json().then(function(data) {
             displayWeather(data, city);
-            console.log(response);
+            // console.log(data);
         })
         .catch(function() {
             // catch any errors
         })
     });
-    window.onload = function () {
-        getWeather();
-    }
-};
+    getWeather();
+}
+
 // displayWeather function
 var displayWeather = function(weather, searchCity) {
     // clear old content
@@ -74,17 +73,17 @@ var displayWeather = function(weather, searchCity) {
 
     // create span to hold temperature
     var temperature = document.createElement("span")
-    temperature.textContent = "Temperature: " + current.weather.main.temp + " °F";
+    temperature.textContent = "Temperature: " + weather.main.temp + " °F";
     temperature.classList = "list-group-item"
 
     // create span to hold humidity
     var humidity = document.createElement("span")
-    humidity.textContent = "Humidity: " + current.weather.main.humidity + " %";
+    humidity.textContent = "Humidity: " + weather.main.humidity + " %";
     humidity.classList = "list-group-item"
 
     // create span to hold wind speed
     var windSpeed = document.createElement("span")
-    windSpeed.textContent = "Wind Speed: " + current.weather.main.speed + " MPH";
+    windSpeed.textContent = "Wind Speed: " + weather.main.speed + " MPH";
     windSpeed.classList = "list-group-item"
 
     // append to container
@@ -92,7 +91,9 @@ var displayWeather = function(weather, searchCity) {
     weatherContainerEl.appendChild(humidity);
     weatherContainerEl.appendChild(windSpeed);
 
-};
+}
+
+
 
 // getUvIndex function
 /*var getUvIndex = function() {
@@ -104,7 +105,9 @@ var displayWeather = function(weather, searchCity) {
 // pastSearch function
 // pastSeachHandler function  
 
-
+/*window.onload = function () {
+    getWeather();
+}*/
 
 
 
