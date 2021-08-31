@@ -20,30 +20,31 @@
         <div class="row">
         <!-- search column -->
             <div class="col-12 col-md-3 p-2 search-column">
-                <div class="card" id="city-search-form">
+                <div id="city-search-form" class="card">
                 <h2>Find Location</h2>
-                <form class="card-body" id="city-search-form">
+                <form id="city-search-form" class="card-body">
                     <input id="city" type="text" class="form-input"/>
                     <button id="btn btn-primary" type="submit">Search</span>
                     </button>
                 </form>
-                <div id="past-search border" id="past-search-buttons"></div>
+                <div id="past-search-buttons" class="past-search border"></div>
                     <h3 class="card-header">Location History</h3>
                 </div>  
             </div>            
         <!-- current forecast container -->
-            <div class="col-12 col-md-9 p-2">
-                <div class="row border selected-city" id="current-forecast">
+            <div class="col-12 col-md-9 p-2" class="row border selected-city">
+                <div id="current-forecast">
                     <div class="col-12">
                     <h2 id="searched-city"></h2>
                     <h3>Current Forecast</h3>
                     <div id="current-weather-container" class="list-group"></div>
                 </div>
             </div>
-            <div class="row border" id="five-day-forecast">
-                <h2 class="col-12" id="forecast"></h2>
+            <!-- five day container -->
+            <div id="five-day-forecast" class="row border">
+                <h2 id="forecast" class="col-12"></h2>
                 <h3>Five Day</h3>
-                <div class="d-flex" id="fiveday-container"></div>
+                <div id="fiveday-container" class="d-flex"></div>
             </div>
         </div>
     </main>
