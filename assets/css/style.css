@@ -1,9 +1,7 @@
-.search-column {
-    color: aquamarine;
-}
 
-#city-search-form {
-    background-color: blueviolet;
+
+#city-search-container {
+    background-color: rgb(124, 36, 206);
 }
 
 
@@ -12,6 +10,6 @@
     background-color: darkgrey;
 }
 
-#five-day-container {
+#five-day-forecast {
     background-color: darkseagreen;
 }

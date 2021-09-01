@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Forecast</title>
 
 </head>
@@ -18,16 +18,16 @@
     <!-- search bar container-->
     <main class="container-fluid">
         <div class="row">
-        <!-- search column -->
+        <!-- search for city column -->
             <div class="col-12 col-md-3 p-2 search-column">
-                <div id="city-search-form" class="card">
+                <div id="city-search-container" class="card">
                 <h2>Find Location</h2>
                 <form id="city-search-form" class="card-body">
                     <input id="city" type="text" class="form-input"/>
                     <button id="btn btn-primary" type="submit">Search</span>
                     </button>
                 </form>
-                <div id="past-search-buttons" class="past-search border"></div>
+                <div id="past-searches" class="past-searches border"></div>
                     <h3 class="card-header">Location History</h3>
                 </div>  
             </div>            
@@ -35,23 +35,24 @@
             <div class="col-12 col-md-9 p-2" class="row border selected-city">
                 <div id="current-forecast">
                     <div class="col-12">
-                    <h2 id="searched-city"></h2>
-                    <h3>Current Forecast</h3>
-                    <div id="current-weather-container" class="list-group"></div>
+                    <h3>
+                        <img class="weather-icon" id="today-icon" />
+                        <span id="searched-city">City Name</span>
+                    </h3>
                 </div>
             </div>
             <!-- five day container -->
             <div id="five-day-forecast" class="row border">
-                <h2 id="forecast" class="col-12"></h2>
-                <h3>Five Day</h3>
-                <div id="fiveday-container" class="d-flex"></div>
+                <h4 id="forecast" class="col-12">
+                    <span id="five-day">Five Day</span>
+                </h4>
             </div>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-    <script src="./script.js"></script>
+    <script src="./assets/js/script.js"></script>
    
 </body>
 </html>
