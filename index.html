@@ -22,12 +22,12 @@
         <div class="">
             <div class="row">
      
-        <!-- search for city column -->
+        <!-- search for city -->
             <div class="col-12 col-md-3 p-2 search-column">
                 <h2 class="card-header container-fluid bg-primary text-light">Find Location</h2>
                 <div id="city-search-container" class="card">
-                <div id="city-search-form" class="card-body">
-                    <input id="city" type="text" class="form-input input-group-text col-9 mr-2" name="city" />
+                    <div id="city-search" class="card-body">
+                    <input id="city-input" type="text" class="form-input input-group-text col-9 mr-2" name="city" />
                     <button type="button" id="search-btn" class="btn btn-info"><i class="fas fa-search"></i></button>
                     </button>
                 </div>
@@ -35,12 +35,10 @@
         <!-- city search history -->
                 <div class="card bg-color-light mt-4">
                     <h3 class="card-header">Location History</h3>
-                    <div id="past-searches" class="input-group m-5">
-    
-                    </div>
+                    <div id="past-searches" class="input-group m-5"></div>
                 </div>  
             </div> 
-            </div>          
+        </div>          
         <!-- current forecast container -->
         <div class="card bg-color-light mt-4 mt-md-0">
             <h3 class="card-header bg-primary text-light">Today's Forecast</h3>
@@ -54,7 +52,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <p class="pl-3">Current Temperature: <span id="current-temp"></span> &deg;F</p>
-                        <p class="pl-3">Feels Like: <span id="current-feels-like"></span> &deg;F</p>
+                        <p class="pl-3">Feels Like: <span id="current-real-feel"></span> &deg;F</p>
                         <p class="pl-3">Condition: <span id="current-condition"></span></p>
                         <p class="pl-3">Humidity: <span id="current-humidity"></span>%</p>
                     </div>

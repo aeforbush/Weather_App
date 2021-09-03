@@ -1,25 +1,24 @@
 var citiesArr = [];
 
-var cityInputEl = document.querySelector("#city");
-var cityBtn = document.querySelector("#btn");
-var cityNameEl = document.querySelector("#searched-city")
+var cityInput = document.querySelector("#city-input");
+var cityBtn = document.querySelector("#search-btn");
+var cityName = document.querySelector("#city-name")
 var apiKey = 'f3c6f7687f7f43a162f3912305630533'
 let log = console.log;
 
 var formHandler = function(event) {
     log(event);
     // get city name 
-    var searchedCity = cityInputEl.nodeValue.trim();
+    var searchedCity = cityInput.value.trim();
 
     if (searchedCity) {
         getCityForecast(searchedCity);
-        cityInputEl.value = "";
+        cityInput.value = "";
     } else {
         alert("Please enter a city!");
     };
 };
 
-// getcityName
 
 // get currentForecast with API
 var getCityForecast = function(city) {
@@ -52,7 +51,7 @@ var getFiveDay = function(city) {
     fetch(CurrentWeatherApi).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                cityNameEl.textContent = `${city} (${moment().format("M/D/YYYY")})`;
+                cityName.textContent = `${city} (${moment().format("M/D/YYYY")})`;
 
                 log(data);
                 
@@ -125,7 +124,7 @@ var loadCities = function() {
         cityArr.shift();
     }
 
-    var recentCities = document.querySelector('#recent-cities');
+    var recentCities = document.querySelector('#past-searches');
     var cityListUl = document.createElement('ul');
     cityListUl.className = 'list-group list-group-flush city-list';
     recentCities.appendChild(cityListUl);
