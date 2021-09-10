@@ -1,7 +1,8 @@
 // makes array from local storage 
 var searchCityName = JSON.parse(localStorage.getItem('City Name')) || [];
+var currentForcastEl = ("#current-forecast")
 var forecastEl = $('#five-day-forecast')
-//var forecastTitle = $('#forecast-title')
+var forecastTitle = $('#forecast-title')
 
 var apiKey = "f3c6f7687f7f43a162f3912305630533"
 
@@ -15,42 +16,44 @@ function onlyUnique(value, index, self) {
   
   // when 'Search' button is clicked
   $("#search-btn").on("click", function () {
+
+    // add border
+    $(currentForcastEl).addClass('border')
+    // empty's out container  
+    $("#five-day-forecast").empty();
   
-  // empty's out container  
-  $("#five-day-forecast").empty();
-  
-  // grabs cityName from search input
+    // grabs cityName from search input
       var cityName = $('#city-name').val()
       // console.log(cityName);
       if (cityName == "") {
-          alert("Please enter in a Destination")
+          alert("Please enter a city.")
           return
       }
   
-  // sends fetch to openweather map
+    // sends fetch to OpenWeather map
     fetchWeatherData(cityName)
     //console.log(cityName)
   });
   
 
 
+// fetches forecast from OpenWeather API
 var fetchWeatherData = function (cityName) {
-	// sends fetch to openweather map
+	// sends fetch to OpenWeather map
 	fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
 		.then(function (response) {
 			if (response.ok) {
 				response.json().then(function (data) {
+                // current forecast 
+                currentForecast(data)
 
-					//Five day forecast
-					FiveDayForecast(data)
+				// five day forecast
+				FiveDayForecast(data)
 				});
 
 				// saves search into array
-
 				searchCityName.push(cityName)
 				console.log(cityName);
-
-
 				// pushes array into localstorage 
 				saveSearch();
 
@@ -58,10 +61,50 @@ var fetchWeatherData = function (cityName) {
 	})
 }
 
-// saves searches into local storage
-var saveSearch = function () {
-	localStorage.setItem('City Name', JSON.stringify(searchCityName));
+
+// appends array into buttons displaying search history
+var searchHistory = function() {
+    for (var i = unique.length - 1; i >= 0; i--) {
+        var liEl = document.createElement9('li');
+        var buttonEl = document.createElement('button');
+        buttonEl.textContent = unique[i];
+        buttonEl.setAttribute('class', 'btn btn-primary ' + unique[i].replace(/\s+/g, ""));
+        buttonEl.setAttribute('type', 'button');
+
+        liEl.append(buttonEl);
+        historyList.append(liEl);
+
+    }
 }
+
+// seaves searches into local storage 
+var saveSearch = function () {
+    localStorage.setItem('City Name', JSON.stringify(searchHistory));
+}
+
+// displays current forecast 
+var currentForecast = function(weather) {
+    // makes fetch call to get UVI and adds to weatherEl
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
+    .then(function(response){
+        if(response.ok) {
+            response.json().then(function(data) {
+                // clears out currentForecastEl for new data input
+                currentForcastEl.empty()
+
+                // adds city name
+                var cityTitle = document.createElement('h3')
+                cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
+
+                // adds weather icon
+                
+
+            })
+        }
+    })
+
+}
+
 
 // display five day forecast
 var FiveDayForecast = function (weather) {
