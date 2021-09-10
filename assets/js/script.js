@@ -1,8 +1,9 @@
 // makes array from local storage 
-var searchCityName = JSON.parse(localStorage.getItem('City Name')) || [];
-var currentForcastEl = ("#current-forecast")
+var searchCityName = JSON.parse(localStorage.getItem('City Name')) || []
+var currentForcastEl = $("#current-forecast")
 var forecastEl = $('#five-day-forecast')
 var forecastTitle = $('#forecast-title')
+var historyList = $('#search-history')
 
 var apiKey = "f3c6f7687f7f43a162f3912305630533"
 
@@ -20,7 +21,7 @@ function onlyUnique(value, index, self) {
     // add border
     $(currentForcastEl).addClass('border')
     // empty's out container  
-    $("#five-day-forecast").empty();
+    //$("#five-day-forecast").empty();
   
     // grabs cityName from search input
       var cityName = $('#city-name').val()
@@ -32,6 +33,8 @@ function onlyUnique(value, index, self) {
   
     // sends fetch to OpenWeather map
     fetchWeatherData(cityName)
+    currentForecast(cityName)
+
     //console.log(cityName)
   });
   
@@ -57,8 +60,34 @@ var fetchWeatherData = function (cityName) {
 				// pushes array into localstorage 
 				saveSearch();
 
-		}
-	})
+                // adds list item button if city isn't in search history
+                var liEl = document.createElement('li')
+                var buttonEl = document.createElement('button')
+                buttonEl.textContent = cityName;
+                cityName = cityName.replace(/\s+/g, '')
+                buttonEl.setAttribute('class', 'btn btn-primary' + cityName);
+                buttonEl.setAttribute('type', 'button');
+                // search for city in history
+                if ($('.' + cityName).length) {
+                    return 
+                } else {
+                    liEl.append(buttonEl);
+                    historyList.prepend(liEl);
+
+                    $(".btn-primary").on('click', function (event) {
+                        cityName = ($(this).text())
+                        // adds border
+                        $(weatherEl).addClass('border')
+                        fetchWeatherData(cityName)
+                    })
+                }
+		    } else {
+                // if city doesn't exist
+                alert('City not found');
+                document.getElementById("city-name").value = "";
+                return
+            }
+	    });
 }
 
 
@@ -79,30 +108,24 @@ var searchHistory = function() {
 
 // seaves searches into local storage 
 var saveSearch = function () {
-    localStorage.setItem('City Name', JSON.stringify(searchHistory));
+    localStorage.setItem('City Name', JSON.stringify(searchCityName));
 }
 
 // displays current forecast 
 var currentForecast = function(weather) {
-    // makes fetch call to get UVI and adds to weatherEl
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
-    .then(function(response){
-        if(response.ok) {
-            response.json().then(function(data) {
-                // clears out currentForecastEl for new data input
-                currentForcastEl.empty()
 
-                // adds city name
-                var cityTitle = document.createElement('h3')
-                cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
+	for (i = 5; i < weather.list.length; i++) {
+		var forecastCard = document.createElement('div')
+		forecastCard.setAttribute('class', 's12 m2')
 
-                // adds weather icon
-                
+       //adds city title 
+      var cityTitle = document.createElement('h2')
+      cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
 
-            })
-        }
-    })
+    
 
+
+}
 }
 
 
