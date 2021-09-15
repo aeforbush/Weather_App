@@ -20,7 +20,7 @@ function onlyUnique(value, index, self) {
   $("#search-btn").on("click", function () {
 
     // add border
-    $(currentForcastEl).addClass('border')
+    $(currentForcastEl).addClass('border ')
     // empty's out container  
     $("#five-day-forecast").empty();
   
@@ -34,7 +34,7 @@ function onlyUnique(value, index, self) {
   
     // sends fetch to OpenWeather map
     fetchWeatherData(cityName)
-    currentForecast(cityName)
+  
 
     console.log(cityName)
   });
@@ -54,13 +54,13 @@ var fetchWeatherData = function (cityName) {
                 currentForecast(data)
 				// five day forecast
 				FiveDayForecast(data)
-                console.log(data);
+                //console.log(data);
 
 				});
 
 				// saves search into array
 				searchCityName.push(cityName)
-				console.log(cityName);
+				//console.log(cityName);
 				// pushes array into localstorage 
 				saveSearch();
 
@@ -81,18 +81,19 @@ var fetchWeatherData = function (cityName) {
                     $(".btn-primary").on('click', function (event) {
                         cityName = ($(this).text())
                         // adds border
-                        $(weatherEl).addClass('border')
+                        $(currentForcastEl).addClass('border')
                         fetchWeatherData(cityName)
                     })
                 }
 		    } else {
                 // if city doesn't exist
-                alert('City not found');
+                alert('Error, City not found');
                 document.getElementById("city-name").value = "";
                 return
             }
 	    });
-}
+    }
+
 
 
 // appends array into buttons displaying search history
@@ -112,37 +113,75 @@ var getHistory = function() {
 
 // seaves searches into local storage 
 var saveSearch = function () {
-    localStorage.setItem('City Name', JSON.stringify(searchCityName))
+    localStorage.setItem('City Name', JSON.stringify(searchCityName));
 }
 
 // displays current forecast 
 var currentForecast = function(weather) {
+    //Gets Lat and Long of City 
+var cityLat = weather.city.coord.lat
+var cityLon = weather.city.coord.lon
 
-    var cityName = $('#city-name').val()
-    // makes fetch call 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`)
-    .then(function(response) {
-        if (response) {
-            response.json().then(function(data) {
+  //Makes Fetch call to get UVI and adds to weatherEl
+  fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
 
-                // clears out forecast
 
-                // current forecast
-                currentForecast();
-                console.log(data);
-            })
-        }
-    })
+    // clears out data
+    currentForcastEl.empty();
 
-       //adds city title 
-      var cityTitle = document.createElement('h2')
-      cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
+    // adds city title 
+    var cityTitle = document.createElement('h2')
+    cityTitle.textContent = weather.city.name + " (" + moment.unix(weather.list[0].dt).format("MMM D, YYYY") + ') ';
 
+    // adds daily weather icon
+    var forecastIcon = document.createElement('img')
+    forecastIcon.setAttribute('src', `https://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`)
+    cityTitle.append(forecastIcon);
+
+    currentForcastEl.append(cityTitle);
+
+    // adds daily temperature
+    var forecastTemp = document.createElement('p')
+    forecastTemp.textContent = 'Temp: ' + weather.list[0].main.temp + '°F';
+    currentForcastEl.append(forecastTemp); 
+
+    // adds daily humidity
+    var forecastHumidity = document.createElement('p')
+    forecastHumidity.textContent = 'Humidity: ' + weather.list[0].main.humidity + '%';
+    currentForcastEl.append(forecastHumidity);
+
+    // adds daily wind speed
+    var windSpeed = document.createElement('p')
+    windSpeed.textContent = 'Wind: ' + weather.list[0].wind.speed + 'MPH';
+    currentForcastEl.append(windSpeed);
+
+     // adds uvi number
+     var cityUviText = document.createElement('p')
+     var cityUviHolder = document.createElement('span')
+     cityUvi = data.current.uvi
+     cityUviHolder.textContent = cityUvi
+     cityUviText.textContent = 'UV Index: '
+     cityUviText.append(cityUviHolder)
+     currentForcastEl.append(cityUviText)
+     
+     // displays different results of uvi
+     if (cityUvi <= 3 ){
+       $( cityUviHolder ).addClass( "low" );
+     } else if (cityUvi <= 5 && cityUvi > 3 ){
+       $( cityUviHolder ).addClass( "moderate" );
+     } else if (cityUvi <= 7 && cityUvi > 5 ){
+       $( cityUviHolder ).addClass( "high" );
+     } else if (cityUvi <= 10 && cityUvi > 7 ){
+       $( cityUviHolder ).addClass( "very-high" );
+     } else if (cityUvi >10 ){
+       $( cityUviHolder ).addClass( "extreme" )
+     }
+
+    });
     
-
-
 }
-
 
 
 // display five day forecast
@@ -192,12 +231,12 @@ var FiveDayForecast = function (weather) {
 
 getHistory();
 
-$(".btn-secondary").on('click', function (event) {
+//$(".btn-primary").on('click', function (event) {
   cityName = ($(this).text())
-  //Adds border 
-  $(forcastEl).addClass('border')
+  // add border
+  //$(currentForcastEl).addClass('border')
   fetchWeatherData(cityName)
-})
+//})
 
 
 

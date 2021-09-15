@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Weather Forecast</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
 </head>
 <body>
     <!-- header is full width -->
@@ -24,43 +23,45 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <form action="" class="">
+                <form>
                     <!-- search for city -->
                     <div class="form-input">
-                        <label for="city-name" class="">City Search</label>
+                        <label for="city-name">City Search</label>
                         <input type="text" class="form-control" id="city-name" placeholder="City Name">
-                        <button id="search-btn" type="button" class="btn btn-secondary">Search</button>
-                        <span class="line-spacing"></span>
+                        <button id="search-btn" type="button" class="btn btn-primary">Search</button>
+                        <span class="dividing-line"></span>
                     <!-- past city search container -->
-                    <ul id="search-history" class="list-history"></ul>
+                    <ul id="search-history" class="list-group"></ul>
                     </div>
                 </form>
             </div>
     <!-- current weather container -->
         <div class="col-md-9">
             <div class="row">
-                <h3 id="forecast-title"></h3>
-                    <div id="current-forecast" class="justify-content-around"></div>
+                    <div id="current-forecast" class="col-md-12"></div>
+                 
                 </div>
+    
 
     <!-- five day forecast -->
+    <div class="row">
             <div class="col-md-12">
-                <div class="row">
-                    <h3 id="forecast-title"></h3>
+                    <h3 id="forecast-title">Five Day Forecast</h3>
                     <div id="five-day-forecast" class="row justify-content-around"></div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>  
 </div>
+</body>  
+
 
 
      
   
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
 <script src="./assets/js/script.js"></script>
    
 </body>
