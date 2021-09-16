@@ -26,9 +26,9 @@
 
 ## Deployed Application
 
-
-
+* https://aeforbush.github.io/Weather_App/
 
 ## Screenshot
 
+![Screen Shot 2021-09-16 at 12 57 47 PM](https://user-images.githubusercontent.com/87487655/133669680-5ff873e5-51f2-4dbc-9d26-1e3a6946c29e.png)
 
