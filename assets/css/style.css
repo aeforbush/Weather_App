@@ -1,15 +1,64 @@
+/* city search container */
+label {
+    margin: 5px;
+    padding: 15px 5px 15px 5px;
+    font-weight: bold;
+    background-color: rgb(7, 82, 85);
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+    
+}
 
+#city-name {
+    padding: 5px;
+    width: 100%;
+    margin: 5px 5px;
+}
 
-#city-search-container {
-    background-color: rgb(124, 36, 206);
+#search-btn {
+    margin: 5px;
+    padding: .8rem;
+    font-weight: bold;
+    background-color: rgb(7, 82, 85);
+    color: white;
+}
+
+.dividing-line {
+    display: inline-block;
+    width: 100%;
+    margin: 1px;
+    padding: 1px;
+    border-bottom: solid;
+}
+
+ul {
+    border-radius: 2px;
+    background-color: rgb(241, 246, 241);
+    list-style-type: none;
+    margin: 5px;
+}
+
+/* search history */
+
+.btn-primary {
+    width: 100%;
+    border: white;
+    margin: 1px;
 }
 
 
-
-#current-forecast {
-    background-color: darkgrey;
-}
+/* five day forecast */
 
 #five-day-forecast {
-    background-color: darkseagreen;
+    background-color: rgb(241, 246, 241);
+    border-radius: 2px;  
+    
+}
+.forecastCard p {
+    font-weight: bold;
+}
+
+.forecastCard img {
+    background-color: white;
 }

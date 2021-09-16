@@ -20,7 +20,7 @@ function onlyUnique(value, index, self) {
   $("#search-btn").on("click", function () {
 
     // add border
-    $(currentForcastEl).addClass('border ')
+    $(currentForcastEl).addClass('border')
     // empty's out container  
     $("#five-day-forecast").empty();
   
@@ -187,13 +187,13 @@ var cityLon = weather.city.coord.lon
 // display five day forecast
 var FiveDayForecast = function (weather) {
     // clear out forecastEl div 
-    forecastEl.empty();
-    document.querySelector('#five-day-forecast').textContent = "Five Day Forecast";
+    // forecastEl.empty();
+    document.querySelector('#five-day-forecast').textContent = "";
 
     // iterates through data to generate five day
 	for (i = 5; i < weather.list.length; i = i + 8) {
 		var forecastCard = document.createElement('div')
-		forecastCard.setAttribute('class', 's12 m2')
+		forecastCard.setAttribute('class', 's12 m2 forecastCard')
 		
 
 		// gets date for each day
