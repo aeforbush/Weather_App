@@ -15,9 +15,7 @@ function onlyUnique(value, index, self) {
   
   var unique = searchCityName.filter(onlyUnique);
   
-  
-  // when 'Search' button is clicked
-  $("#search-btn").on("click", function () {
+  function displayWeather () {
 
     // add border
     $(currentForcastEl).addClass('border')
@@ -37,6 +35,52 @@ function onlyUnique(value, index, self) {
   
 
     console.log(cityName)
+  
+  }
+
+  $('#search-btn').on('click', function(event){
+    event.preventDefault();
+    displayWeather();
+  })
+
+  // var input = document.getElementById('#city-name');
+  // input.addEventListener('keyup', function(event){
+  //   if(event.keyCode === 13) {
+  //     event.preventDefault();
+  //     displayWeather();
+  //   }
+  // });
+
+  //  // when 'Search' button is clicked
+  // $('#city-name').keyup((e) => {
+  //   if (e.which === 13) {
+  //     e.preventDefault();
+  //     $('#city-name').click();
+  //     displayWeather();
+  //   }    
+  // });
+
+  $("#search-btn").on("click", function () {
+          displayWeather();
+    // // add border
+    // $(currentForcastEl).addClass('border')
+    // // empty's out container  
+    // $("#five-day-forecast").empty();
+  
+    // // grabs cityName from search input
+    //   var cityName = $('#city-name').val()
+    //   // console.log(cityName);
+    //   if (cityName == "") {
+    //       alert("Please enter a city.")
+    //       return
+    //   }
+  
+    // // sends fetch to OpenWeather map
+    // fetchWeatherData(cityName)
+  
+
+    // console.log(cityName)
+
   });
   
 
