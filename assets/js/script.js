@@ -15,37 +15,15 @@ function onlyUnique(value, index, self) {
 
 var unique = searchCityName.filter(onlyUnique);
 
-// function displayWeather() {
-
-//   // add border
-//   $(currentForcastEl).addClass('border')
-//   // empty's out container  
-//   $("#five-day-forecast").empty();
-
-//   // grabs cityName from search input
-//   var cityName = $('#city-name').val()
-//    console.log(cityName);
-//   if (cityName == "") {
-//     alert("Please enter a city.")
-//     return
-//   }
-
-//   // sends fetch to OpenWeather map
-//   fetchWeatherData(cityName)
-
-
-
-
-
 
 $("#search-history").on('click', function (event) {
   if (event.target.matches('button')) {
     console.log(event.target.innerText)
 
-  cityName = ($(event.target).text())
-  // adds border
-  $(currentForcastEl).addClass('border')
-  fetchWeatherData(cityName)
+    cityName = ($(event.target).text())
+    // adds border
+    $(currentForcastEl).addClass('border')
+    fetchWeatherData(cityName)
   }
 });
 
@@ -69,16 +47,13 @@ $("#display-weather").on("submit", function (event) {
   // sends fetch to OpenWeather map
   fetchWeatherData(cityName)
 
-
-  // console.log(cityName)
-
 });
 
 
 
 // fetches forecast from OpenWeather API
 var fetchWeatherData = function (cityName) {
-  // console.log(cityName);
+
   // sends fetch to OpenWeather map
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`)
     .then(function (response) {
@@ -95,7 +70,7 @@ var fetchWeatherData = function (cityName) {
 
         // saves search into array
         searchCityName.push(cityName)
-        //console.log(cityName);
+
         // pushes array into localstorage 
         saveSearch();
 
@@ -112,13 +87,6 @@ var fetchWeatherData = function (cityName) {
         } else {
           liEl.append(buttonEl);
           historyList.prepend(liEl);
-
-          // $(".btn-primary").on('click', function (event) {
-          //   cityName = ($(this).text())
-          //   // adds border
-          //   $(currentForcastEl).addClass('border')
-          //   fetchWeatherData(cityName)
-          // })
         }
       } else {
         // if city doesn't exist
@@ -128,7 +96,6 @@ var fetchWeatherData = function (cityName) {
       }
     });
 }
-
 
 
 // appends array into buttons displaying search history
@@ -222,7 +189,6 @@ var currentForecast = function (weather) {
 // display five day forecast
 var FiveDayForecast = function (weather) {
   // clear out forecastEl div 
-  // forecastEl.empty();
   document.querySelector('#five-day-forecast').textContent = "";
 
   // iterates through data to generate five day
@@ -266,12 +232,9 @@ var FiveDayForecast = function (weather) {
 
 getHistory();
 
-//$(".btn-primary").on('click', function (event) {
-cityName = ($(this).text())
-  // add border
-  //$(currentForcastEl).addClass('border')
-// fetchWeatherData(cityName)
-//})
+
+
+
 
 
 
